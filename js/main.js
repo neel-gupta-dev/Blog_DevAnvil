@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         try {
-            // Fetch both posts metadata and content in parallel
+            // Fetch both posts metadata and content in parallel from the /data folder
             const [postsResponse, contentResponse] = await Promise.all([
                 fetch('/data/posts.json'),
                 fetch('/data/content.json')
@@ -215,7 +215,15 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (error) {
             console.error("Failed to load single post:", error);
             document.getElementById('post-title').textContent = 'Error';
-            postContent.innerHTML = '<p>There was an error loading the post. Please try again later.</p>';
+            postContent.innerHTML = `
+                <p style="text-align: center; color: #e74c3c; margin-top: 2rem;">
+                    There was an error loading the post content. Please try again later.
+                    <br>
+                    <strong>Error details:</strong> ${error.message || error}
+                    <br>
+                    If you are running this locally, ensure you are using a local web server (e.g., 'npx serve' or 'python -m http.server').
+                </p>
+            `;
         }
     };
 

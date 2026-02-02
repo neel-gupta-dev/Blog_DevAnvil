@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "slug": "mastering-asynchronous-javascript-in-2024",
+    "link": "/post?slug=mastering-asynchronous-javascript-in-2024",
+    "image": "https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?q=80&w=400&h=250&fit=crop",
+    "imageAlt": "Close-up of JavaScript code on a dark screen",
+    "category": "JavaScript",
+    "title": "Mastering Asynchronous JavaScript in 2024",
+    "excerpt": "Dive deep into Promises, async/await, and the event loop to write non-blocking, efficient code that will impress any developer.",
+    "author": "John Doe",
+    "date": "Mar 15, 2024"
+  },
+  {
+    "id": 2,
+    "slug": "a-beginners-guide-to-docker-and-containers",
+    "link": "/post?slug=a-beginners-guide-to-docker-and-containers",
+    "image": "https://images.unsplash.com/photo-1508243774391-3a73636158dd?q=80&w=400&h=250&fit=crop",
+    "imageAlt": "Colorful shipping containers stacked at a port, representing Docker",
+    "category": "DevOps",
+    "title": "A Beginner's Guide to Docker and Containers",
+    "excerpt": "Learn how containerization with Docker can streamline your development workflow and simplify deployment across any environment.",
+    "author": "Jane Smith",
+    "date": "Mar 12, 2024"
+  },
+  {
+    "id": 3,
+    "slug": "modern-css-layouts-beyond-flexbox-and-grid",
+    "link": "/post?slug=modern-css-layouts-beyond-flexbox-and-grid",
+    "image": "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?q=80&w=400&h=250&fit=crop",
+    "imageAlt": "A modern web design layout on a laptop screen",
+    "category": "CSS",
+    "title": "Modern CSS Layouts: Beyond Flexbox & Grid",
+    "excerpt": "Explore cutting-edge CSS features like subgrid, container queries, and `has()` to create powerful, responsive layouts with less code.",
+    "author": "Alex Johnson",
+    "date": "Mar 10, 2024"
+  }
+]

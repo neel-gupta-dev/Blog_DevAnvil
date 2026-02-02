@@ -186,7 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         "name": "DevAnvil",
                         "logo": {
                             "@type": "ImageObject",
-                            "url": "https://www.devanvil.com/images/og-image.jpg" // Replace with a real logo URL
+                            "url": "https://devanvil.pages.dev/images/og-image.jpg" // Replace with a real logo URL
                         }
                     },
                     "datePublished": new Date(post.date).toISOString(),

@@ -6,19 +6,19 @@
   <description>Tech &amp; Development Blogs</description>
   <item>
     <title>Mastering Asynchronous JavaScript in 2024</title>
-    <link>https://www.devanvil.com/post?slug=mastering-asynchronous-javascript-in-2024</link>
+    <link>https://devanvil.pages.dev/post?slug=mastering-asynchronous-javascript-in-2024</link>
     <description>Dive deep into Promises, async/await, and the event loop to write non-blocking, efficient code that will impress any developer.</description>
     <pubDate>Fri, 15 Mar 2024 00:00:00 GMT</pubDate>
   </item>
   <item>
     <title>A Beginner's Guide to Docker and Containers</title>
-    <link>https://www.devanvil.com/post?slug=a-beginners-guide-to-docker-and-containers</link>
+    <link>https://devanvil.pages.dev/post?slug=a-beginners-guide-to-docker-and-containers</link>
     <description>Learn how containerization with Docker can streamline your development workflow and simplify deployment across any environment.</description>
     <pubDate>Tue, 12 Mar 2024 00:00:00 GMT</pubDate>
   </item>
   <item>
     <title>Modern CSS Layouts: Beyond Flexbox &amp; Grid</title>
-    <link>https://www.devanvil.com/post?slug=modern-css-layouts-beyond-flexbox-and-grid</link>
+    <link>https://devanvil.pages.dev/post?slug=modern-css-layouts-beyond-flexbox-and-grid</link>
     <description>Explore cutting-edge CSS features like subgrid, container queries, and `has()` to create powerful, responsive layouts with less code.</description>
     <pubDate>Sun, 10 Mar 2024 00:00:00 GMT</pubDate>
   </item>

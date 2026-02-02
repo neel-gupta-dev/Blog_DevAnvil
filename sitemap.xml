@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.devanvil.com/</loc>
-    <lastmod>2024-03-16</lastmod>
+    <loc>https://devanvil.pages.dev/</loc>
+    <lastmod>2026-02-1</lastmod>
     <priority>1.00</priority>
   </url>
   <url>
     <loc>https://devanvil.pages.dev/blog</loc>
-    <lastmod>2024-03-16</lastmod>
+    <lastmod>2026-02-1</lastmod>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://devanvil.pages.dev/about</loc>
-    <lastmod>2024-03-16</lastmod>
+    <lastmod>2026-02-1</lastmod>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://devanvil.pages.dev/contact</loc>
-    <lastmod>2024-03-16</lastmod>
+    <lastmod>2026-02-1</lastmod>
     <priority>0.80</priority>
   </url>
   <url>

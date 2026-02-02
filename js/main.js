@@ -171,6 +171,30 @@ document.addEventListener('DOMContentLoaded', () => {
                 setMetaTag('twitter:description', post.excerpt);
                 setMetaTag('twitter:image', post.image.replace('&w=400&h=250&fit=crop', '&w=1200&h=600&fit=crop')); // Use larger image for social
 
+                // Structured Data (JSON-LD) for SEO
+                const schema = {
+                    "@context": "https://schema.org",
+                    "@type": "BlogPosting",
+                    "headline": post.title,
+                    "image": post.image.replace('&w=400&h=250&fit=crop', '&w=1200&h=600&fit=crop'),
+                    "author": {
+                        "@type": "Person",
+                        "name": post.author
+                    },
+                    "publisher": {
+                        "@type": "Organization",
+                        "name": "DevAnvil",
+                        "logo": {
+                            "@type": "ImageObject",
+                            "url": "https://www.devanvil.com/images/og-image.jpg" // Replace with a real logo URL
+                        }
+                    },
+                    "datePublished": new Date(post.date).toISOString(),
+                    "dateModified": new Date(post.date).toISOString(),
+                    "description": post.excerpt
+                };
+                document.getElementById('post-schema').textContent = JSON.stringify(schema);
+
                 const postHtmlContent = allContent[post.id];
                 
                 // Populate the page content

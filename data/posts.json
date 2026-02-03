@@ -1,15 +1,15 @@
 [
   {
     "id": 1,
-    "slug": "mastering-asynchronous-javascript-in-2024",
-    "link": "/post?slug=mastering-asynchronous-javascript-in-2024",
+    "slug": "homelabbing-guide-2026",
+    "link": "/post?slug=homelabbing-guide-2026",
     "image": "https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?q=80&w=400&h=250&fit=crop",
     "imageAlt": "Close-up of JavaScript code on a dark screen",
-    "category": "JavaScript",
-    "title": "Mastering Asynchronous JavaScript in 2024",
+    "category": "Home Labbing",
+    "title": "The Sovereign Server: Why Homelabbing is the Most Important Skill of 2026",
     "excerpt": "Dive deep into Promises, async/await, and the event loop to write non-blocking, efficient code that will impress any developer.",
-    "author": "John Doe",
-    "date": "Mar 15, 2024"
+    "author": "Admin",
+    "date": "2026-02-04"
   },
   {
     "id": 2,

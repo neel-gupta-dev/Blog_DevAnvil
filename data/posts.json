@@ -3,7 +3,7 @@
     "id": 1,
     "slug": "homelabbing-guide-2026",
     "link": "/post?slug=homelabbing-guide-2026",
-    "image": "https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?q=80&w=400&h=250&fit=crop",
+    "image": "/assets/images/home_lab.jpg",
     "imageAlt": "Close-up of JavaScript code on a dark screen",
     "category": "Home Labbing",
     "title": "The Sovereign Server: Why Homelabbing is the Most Important Skill of 2026",
@@ -13,15 +13,15 @@
   },
   {
     "id": 2,
-    "slug": "a-beginners-guide-to-docker-and-containers",
-    "link": "/post?slug=a-beginners-guide-to-docker-and-containers",
-    "image": "https://images.unsplash.com/photo-1508243774391-3a73636158dd?q=80&w=400&h=250&fit=crop",
+    "slug": "docker-containers-tutorial-2026",
+    "link": "/post?slug=docker-containers-tutorial-2026",
+    "image": "/assets/images/docker.jpg",
     "imageAlt": "Colorful shipping containers stacked at a port, representing Docker",
-    "category": "DevOps",
-    "title": "A Beginner's Guide to Docker and Containers",
+    "category": "Docker",
+    "title": "Docker Demystified: The 2026 Handbook for Beginners",
     "excerpt": "Learn how containerization with Docker can streamline your development workflow and simplify deployment across any environment.",
-    "author": "Jane Smith",
-    "date": "Mar 12, 2024"
+    "author": "Admin",
+    "date": "2026-02-05"
   },
   {
     "id": 3,

@@ -25,14 +25,14 @@
   },
   {
     "id": 3,
-    "slug": "modern-css-layouts-beyond-flexbox-and-grid",
-    "link": "/post?slug=modern-css-layouts-beyond-flexbox-and-grid",
-    "image": "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?q=80&w=400&h=250&fit=crop",
+    "slug": "hubs-vs-switches-networking-basics-2026",
+    "link": "/post?slug=hubs-vs-switches-networking-basics-2026",
+    "image": "/assets/images/switches-hubs.webp",
     "imageAlt": "A modern web design layout on a laptop screen",
-    "category": "CSS",
-    "title": "Modern CSS Layouts: Beyond Flexbox & Grid",
+    "category": "Home Labbing",
+    "title": "Network Fundamentals: Why Hubs Belong in a Museum (Not Your 2026 Lab)",
     "excerpt": "Explore cutting-edge CSS features like subgrid, container queries, and `has()` to create powerful, responsive layouts with less code.",
-    "author": "Alex Johnson",
-    "date": "Mar 10, 2024"
+    "author": "Admin",
+    "date": "2026-02-06"
   }
 ]

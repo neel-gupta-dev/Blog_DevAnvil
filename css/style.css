@@ -5,6 +5,8 @@
     --card-bg: #fff;
     --header-bg: #fff;
     --header-shadow: rgba(0, 0, 0, 0.08);
+    --card-shadow: rgba(0, 0, 0, 0.05);
+    --card-shadow-light: rgba(0, 0, 0, 0.08);
     --heading-color: #2c3e50;
     --link-color: #34495e;
     --link-hover-color: #3498db;
@@ -18,6 +20,7 @@
     --footer-text: #ecf0f1;
     --footer-subtext: #bdc3c7;
     --footer-border: #34495e;
+    --card-shadow-hover: rgba(0, 0, 0, 0.12);
     --input-bg: #fff;
     --input-border: #ccc;
 }
@@ -28,6 +31,9 @@ body.dark-mode {
     --card-bg: #252525;
     --header-bg: #1e1e1e;
     --header-shadow: rgba(0, 0, 0, 0.5);
+    --card-shadow: rgba(0, 0, 0, 0.25);
+    --card-shadow-light: rgba(0, 0, 0, 0.3);
+    --card-shadow-hover: rgba(0, 0, 0, 0.4);
     --heading-color: #f1f1f1;
     --link-color: #bdc3c7;
     --primary-hover-color: #5dade2;
@@ -53,6 +59,10 @@ body {
     background-color: var(--bg-color);
     color: var(--text-color);
     transition: background-color 0.3s ease, color 0.3s ease;
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none;    /* Firefox */
+    -ms-user-select: none;     /* IE 10+ */
+    user-select: none;         /* Standard syntax */
 }
 
 a {
@@ -61,6 +71,14 @@ a {
 
 ul {
     list-style-type: none;
+}
+
+/* Re-enable text selection for form inputs for usability */
+input, textarea {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
 }
 
 /* Header & Navbar */
@@ -274,10 +292,10 @@ body.dark-mode .theme-toggle .fa-moon {
 
 /* About Page Styles */
 .about-container {
-    background-color: #fff;
+    background-color: var(--card-bg);
     padding: 2rem;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 8px var(--card-shadow);
 }
 
 .about-container h2 {
@@ -342,7 +360,7 @@ body.dark-mode .theme-toggle .fa-moon {
     background-color: var(--card-bg);
     padding: 2rem;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 8px var(--card-shadow);
 }
 
 .contact-info-wrapper h2, .contact-form-wrapper h2 {
@@ -434,7 +452,7 @@ body.dark-mode .theme-toggle .fa-moon {
     background-color: var(--card-bg);
     padding: 2rem;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 8px var(--card-shadow);
 }
 
 @media screen and (min-width: 769px) {
@@ -527,7 +545,7 @@ body.dark-mode .theme-toggle .fa-moon {
 .post-card {
     background-color: var(--card-bg);
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 8px var(--card-shadow-light);
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -536,7 +554,7 @@ body.dark-mode .theme-toggle .fa-moon {
 
 .post-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 8px 16px var(--card-shadow-hover);
 }
 
 .card-image-link {

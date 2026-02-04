@@ -1,5 +1,27 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    // --- Theme (Dark/Light Mode) Logic ---
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
+
+    // Apply the saved theme on page load
+    if (localStorage.getItem('devAnvilTheme') === 'dark') {
+        body.classList.add('dark-mode');
+    }
+
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            
+            // Save the user's preference
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('devAnvilTheme', 'dark');
+            } else {
+                localStorage.removeItem('devAnvilTheme');
+            }
+        });
+    }
+
     // --- Mobile Menu (Hamburger) Logic ---
     const hamburger = document.querySelector(".hamburger");
     const navMenu = document.querySelector(".nav-menu");

@@ -44,6 +44,12 @@ async function generateFeeds() {
 
 function generateSitemap(posts) {
     const staticPages = ['/', '/blog', '/about', '/contact'];
+    const staticPagePriorities = {
+        '/': '1.0', // Homepage is most important
+        '/blog': '0.8', // Blog listing page
+        '/about': '0.7',
+        '/contact': '0.7'
+    };
 
     let sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>\n`;
     sitemapContent += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
@@ -54,6 +60,7 @@ function generateSitemap(posts) {
         sitemapContent += `    <loc>${siteUrl}${page}</loc>\n`;
         sitemapContent += `    <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>\n`;
         sitemapContent += `    <changefreq>weekly</changefreq>\n`;
+        sitemapContent += `    <priority>${staticPagePriorities[page] || '0.5'}</priority>\n`; // Assign priority
         sitemapContent += `  </url>\n`;
     });
 
@@ -61,8 +68,9 @@ function generateSitemap(posts) {
     posts.forEach(post => {
         sitemapContent += `  <url>\n`;
         sitemapContent += `    <loc>${siteUrl}${post.link}</loc>\n`;
-        sitemapContent += `    <lastmod>${new Date(post.date).toISOString().split('T')[0]}</lastmod>\n`;
-        sitemapContent += `    <changefreq>yearly</changefreq>\n`;
+        sitemapContent += `    <lastmod>${new Date(post.date).toISOString().split('T')[0]}</lastmod>\n`; // Use post date for last modification
+        sitemapContent += `    <changefreq>monthly</changefreq>\n`; // Suggest more frequent checks for blog posts
+        sitemapContent += `    <priority>0.9</priority>\n`; // Blog posts are highly important
         sitemapContent += `  </url>\n`;
     });
 

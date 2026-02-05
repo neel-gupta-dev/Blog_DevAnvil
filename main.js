@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- Mobile Menu (Hamburger) Logic ---
     const hamburger = document.querySelector(".hamburger");
     const navMenu = document.querySelector(".nav-menu");
 
@@ -9,35 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
             navMenu.classList.toggle("active");
         });
     }
-
-    // --- Dynamic Copyright Year ---
-    const copyrightYear = document.getElementById("copyright-year");
-    if (copyrightYear) {
-        copyrightYear.textContent = new Date().getFullYear();
-    }
-
-    // --- View Counter Logic ---
-    const getViewCounts = () => {
-        // Safely get and parse view counts from localStorage
-        try {
-            const counts = localStorage.getItem('devAnvilViewCounts');
-            return counts ? JSON.parse(counts) : {};
-        } catch (e) {
-            console.error("Error reading view counts from localStorage", e);
-            return {}; // Return empty object on error
-        }
-    };
-
-    const saveViewCounts = (counts) => {
-        localStorage.setItem('devAnvilViewCounts', JSON.stringify(counts));
-    };
-
-    const incrementViewCount = (postId) => {
-        if (!postId) return;
-        const viewCounts = getViewCounts();
-        viewCounts[postId] = (viewCounts[postId] || 0) + 1;
-        saveViewCounts(viewCounts);
-    };
 
     // Helper function to set meta tags
     const setMetaTag = (property, content, isProperty = true) => {
@@ -66,6 +36,29 @@ document.addEventListener('DOMContentLoaded', () => {
         tag.setAttribute('href', href);
     };
 
+    // --- Theme (Dark/Light Mode) Logic ---
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
+
+    // Apply the saved theme on page load
+    if (localStorage.getItem('devAnvilTheme') === 'dark') {
+        body.classList.add('dark-mode');
+    }
+
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            
+            // Save the user's preference
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('devAnvilTheme', 'dark');
+            } else {
+                localStorage.removeItem('devAnvilTheme');
+            }
+        });
+    }
+
+
     // --- Generic Post Loader ---
     const loadPosts = async (gridSelector, postLimit = null) => {
         const postsGrid = document.querySelector(gridSelector);
@@ -74,8 +67,13 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const response = await fetch('/data/posts.json');
 
-            const viewCounts = getViewCounts();
             if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+
+            // --- Dynamic Copyright Year ---
+            const copyrightYear = document.getElementById("copyright-year");
+            if (copyrightYear) {
+                copyrightYear.textContent = new Date().getFullYear();
+            }
             
             let posts = await response.json();
             
@@ -88,7 +86,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const postsHtml = postsToDisplay.map(post => {
-                const views = viewCounts[post.id] || 0;
                 return `
                     <article class="post-card">
                         <a href="${post.link}" class="card-image-link"><img src="${post.image}" alt="${post.imageAlt}" class="card-image" loading="lazy"></a>
@@ -99,8 +96,6 @@ document.addEventListener('DOMContentLoaded', () => {
                             <div class="card-meta">
                                 <span><i class="fas fa-user"></i> ${post.author}</span>
                                 <div class="card-meta-right">
-                                    <span><i class="fas fa-calendar-alt"></i> ${post.date}</span>
-                                    <span class="card-views"><i class="fas fa-eye"></i> ${views}</span>
                                 </div>
                             </div>
                         </div>
@@ -145,10 +140,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const post = posts.find(p => p.slug === slug);
 
             if (post) {
-                // Increment view count for this post
-                incrementViewCount(post.id);
-                const viewCounts = getViewCounts();
-                const views = viewCounts[post.id] || 1; // Start at 1 for the current view
 
                 // Update page title and meta description for SEO
                 document.title = `${post.title} - DevAnvil`;
@@ -203,7 +194,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById('post-meta').innerHTML = `
                     <span><i class="fas fa-user"></i> ${post.author}</span>
                     <span><i class="fas fa-calendar-alt"></i> ${post.date}</span>
-                    <span class="card-views"><i class="fas fa-eye"></i> ${views}</span>
                 `;
                 document.getElementById('post-image-container').innerHTML = `<img src="${post.image.replace('&w=400&h=250&fit=crop', '&w=1200&h=600&fit=crop')}" alt="${post.imageAlt}" loading="lazy">`;
                 postContent.innerHTML = postHtmlContent || '<p>Content for this post is not available at the moment.</p>';
@@ -229,6 +219,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Load posts based on which page we are on
     loadPosts('#latest-posts-grid', 3); // For homepage
-    loadPosts('#all-posts-grid');      // For blog page
-    loadSinglePost();                  // For single post page
 });

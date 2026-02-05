@@ -101,19 +101,27 @@ input, textarea {
 }
 
 .nav-logo {
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: var(--heading-color);
+    /* Removed font styles as it's an image now */
     padding: 0.25rem 1rem;
     border: 2px solid var(--primary-color);
     border-radius: 8px;
     transition: all 0.3s ease-in-out;
+    display: flex; /* To center the image vertically */
+    align-items: center;
+    justify-content: center;
 }
 
 .nav-logo:hover {
     background-color: var(--primary-color);
-    color: var(--header-bg);
+}
+
+/* New style for the logo image */
+.logo-img {
+    height: 40px; /* Adjust height as needed */
+    width: auto; /* Maintain aspect ratio */
+    display: block; /* Remove extra space below image */
+    /* If the logo has a transparent background, you might want to adjust its color for dark mode */
+    /* filter: invert(1) hue-rotate(180deg); for example, if it's a dark logo on light background */
 }
 
 .nav-menu {
@@ -743,10 +751,7 @@ body.dark-mode .theme-toggle .fa-moon {
 }
 
 .footer-logo {
-    font-family: 'Poppins', sans-serif;
-    font-size: 2rem;
-    font-weight: 700;
-    color: #fff;
+    /* Removed font styles as it's an image now */
     display: inline-block;
     margin-bottom: 0.5rem;
 }

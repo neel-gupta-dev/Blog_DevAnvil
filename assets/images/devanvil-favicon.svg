@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <style>
+    /* Using currentColor allows the text to adapt to the browser's UI theme (light/dark) */
+    text {
+      fill: currentColor;
+      font-family: monospace;
+      font-size: 60px;
+      text-anchor: middle;
+      dominant-baseline: central;
+    }
+  </style>
+  <!-- &#x3C; and &#x3E; are HTML entities for < and > to ensure proper XML parsing -->
+  <text x="50%" y="50%">&#x3C;/&#x3E;</text>
+</svg>

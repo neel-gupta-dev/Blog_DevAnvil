@@ -38,29 +38,20 @@ document.addEventListener('DOMContentLoaded', () => {
         copyrightYear.textContent = new Date().getFullYear();
     }
 
-    // --- View Counter Logic ---
-    const getViewCounts = () => {
-        // Safely get and parse view counts from localStorage
-        try {
-            const counts = localStorage.getItem('devAnvilViewCounts');
-            return counts ? JSON.parse(counts) : {};
-        } catch (e) {
-            console.error("Error reading view counts from localStorage", e);
-            return {}; // Return empty object on error
-        }
-    };
+    // --- Read Time Estimator ---
+    const calculateReadTime = (content) => {
+        if (!content) return '1 min read'; // Default value
 
-    const saveViewCounts = (counts) => {
-        localStorage.setItem('devAnvilViewCounts', JSON.stringify(counts));
-    };
+        // Strip HTML tags to get plain text, then count words
+        const text = content.replace(/<[^>]+>/g, '');
+        const words = text.trim().split(/\s+/).length;
 
-    const incrementViewCount = (postId) => {
-        if (!postId) return;
-        const viewCounts = getViewCounts();
-        viewCounts[postId] = (viewCounts[postId] || 0) + 1;
-        saveViewCounts(viewCounts);
-    };
+        // Average reading speed: 225 words per minute
+        const wordsPerMinute = 225;
+        const readTime = Math.ceil(words / wordsPerMinute);
 
+        return `${readTime} min read`;
+    };
     // Helper function to set meta tags
     const setMetaTag = (property, content, isProperty = true) => {
         let selector = isProperty ? `meta[property="${property}"]` : `meta[name="${property}"]`;
@@ -94,12 +85,17 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!postsGrid) return;
 
         try {
-            const response = await fetch('/data/posts.json');
+            // Fetch both posts and content to calculate read time
+            const [postsResponse, contentResponse] = await Promise.all([
+                fetch('/data/posts.json'),
+                fetch('/data/content.json')
+            ]);
 
-            const viewCounts = getViewCounts();
-            if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+            if (!postsResponse.ok) throw new Error(`HTTP error! Status: ${postsResponse.status}`);
+            if (!contentResponse.ok) throw new Error(`Failed to fetch content file: ${contentResponse.status}`);
             
-            let posts = await response.json();
+            let posts = await postsResponse.json();
+            const allContent = await contentResponse.json();
             
             // If a limit is set, slice the array
             const postsToDisplay = postLimit ? posts.slice(0, postLimit) : posts;
@@ -110,7 +106,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const postsHtml = postsToDisplay.map(post => {
-                const views = viewCounts[post.id] || 0;
+                const postContent = allContent[post.id];
+                const readTime = calculateReadTime(postContent);
                 return `
                     <article class="post-card">
                         <a href="${post.link}" class="card-image-link"><img src="${post.image}" alt="${post.imageAlt}" class="card-image" loading="lazy"></a>
@@ -122,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <span><i class="fas fa-user"></i> ${post.author}</span>
                                 <div class="card-meta-right">
                                     <span><i class="fas fa-calendar-alt"></i> ${post.date}</span>
-                                    <span class="card-views"><i class="fas fa-eye"></i> ${views}</span>
+                                    <span class="card-read-time"><i class="fas fa-clock"></i> ${readTime}</span>
                                 </div>
                             </div>
                         </div>
@@ -166,9 +163,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         let allPosts = []; // Cache for all posts data
+        let allContent = {}; // Cache for all content data
 
         const renderPosts = (postsToRender) => {
-            const viewCounts = getViewCounts();
             if (postsToRender.length === 0) {
                 if (searchInput.value.trim() !== '') {
                     postsGrid.innerHTML = '<p style="text-align: center;">No posts match your search.</p>';
@@ -179,7 +176,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const postsHtml = postsToRender.map(post => {
-                const views = viewCounts[post.id] || 0;
+                const postContent = allContent[post.id];
+                const readTime = calculateReadTime(postContent);
                 return `
                     <article class="post-card">
                         <a href="${post.link}" class="card-image-link"><img src="${post.image}" alt="${post.imageAlt}" class="card-image" loading="lazy"></a>
@@ -187,7 +185,13 @@ document.addEventListener('DOMContentLoaded', () => {
                             <span class="card-category">${post.category}</span>
                             <h2 class="card-title"><a href="${post.link}">${post.title}</a></h2>
                             <p class="card-excerpt">${post.excerpt}</p>
-                            <!-- The meta content is identical to loadPosts and will be rendered correctly -->
+                            <div class="card-meta">
+                                <span><i class="fas fa-user"></i> ${post.author}</span>
+                                <div class="card-meta-right">
+                                    <span><i class="fas fa-calendar-alt"></i> ${post.date}</span>
+                                    <span class="card-read-time"><i class="fas fa-clock"></i> ${readTime}</span>
+                                </div>
+                            </div>
                         </div>
                     </article>
                 `;
@@ -207,9 +211,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const initialize = async () => {
             try {
-                const response = await fetch('/data/posts.json');
-                if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-                allPosts = await response.json();
+                const [postsResponse, contentResponse] = await Promise.all([
+                    fetch('/data/posts.json'),
+                    fetch('/data/content.json')
+                ]);
+
+                if (!postsResponse.ok) throw new Error(`HTTP error! Status: ${postsResponse.status}`);
+                if (!contentResponse.ok) throw new Error(`Failed to fetch content file: ${contentResponse.status}`);
+                allPosts = await postsResponse.json();
+                allContent = await contentResponse.json();
 
                 const urlParams = new URLSearchParams(window.location.search);
                 const query = urlParams.get('q');
@@ -261,11 +271,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const post = posts.find(p => p.slug === slug);
 
             if (post) {
-                // Increment view count for this post
-                incrementViewCount(post.id);
-                const viewCounts = getViewCounts();
-                const views = viewCounts[post.id] || 1; // Start at 1 for the current view
-
+                const postHtmlContent = allContent[post.id];
+                const readTime = calculateReadTime(postHtmlContent);
                 // Update page title and meta description for SEO
                 document.title = `${post.title} - DevAnvil`;
                 setMetaTag('description', post.excerpt, false); // name="description"
@@ -311,15 +318,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 };
                 document.getElementById('post-schema').textContent = JSON.stringify(schema);
 
-                const postHtmlContent = allContent[post.id];
-                
                 // Populate the page content
                 document.getElementById('post-category').textContent = post.category;
                 document.getElementById('post-title').textContent = post.title;
                 document.getElementById('post-meta').innerHTML = `
                     <span><i class="fas fa-user"></i> ${post.author}</span>
                     <span><i class="fas fa-calendar-alt"></i> ${post.date}</span>
-                    <span class="card-views"><i class="fas fa-eye"></i> ${views}</span>
+                    <span class="card-read-time"><i class="fas fa-clock"></i> ${readTime}</span>
                 `;
                 document.getElementById('post-image-container').innerHTML = `<img src="${post.image.replace('&w=400&h=250&fit=crop', '&w=1200&h=600&fit=crop')}" alt="${post.imageAlt}" loading="lazy">`;
                 postContent.innerHTML = postHtmlContent || '<p>Content for this post is not available at the moment.</p>';

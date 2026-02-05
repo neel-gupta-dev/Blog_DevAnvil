@@ -653,6 +653,77 @@ body.dark-mode .theme-toggle .fa-moon {
     margin-right: 0.5rem;
 }
 
+/* Newsletter Section */
+.newsletter-section {
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.newsletter-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.newsletter-container h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    color: #fff; /* Ensure heading color is white */
+}
+
+.newsletter-container p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.newsletter-form {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.newsletter-form input {
+    width: 100%;
+    max-width: 350px;
+    padding: 0.9rem 1rem;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.newsletter-form input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.newsletter-form input:focus {
+    outline: none;
+    background-color: var(--card-bg);
+    color: var(--text-color);
+}
+
+.newsletter-form button {
+    padding: 0.9rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--footer-bg); /* Use a color that contrasts well */
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.newsletter-form button:hover {
+    background-color: var(--link-color);
+}
+
 /* Footer */
 .footer {
     background-color: var(--footer-bg);

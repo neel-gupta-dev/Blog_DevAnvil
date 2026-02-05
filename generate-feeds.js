@@ -3,6 +3,7 @@ const path = require('path');
 
 const siteUrl = 'https://devanvil.pages.dev';
 const postsPath = path.join(__dirname, 'data', 'posts.json');
+const contentPath = path.join(__dirname, 'data', 'content.json'); // Add path to content.json
 const sitemapPath = path.join(__dirname, 'sitemap.xml');
 const rssPath = path.join(__dirname, 'rss.xml');
 
@@ -24,12 +25,15 @@ async function generateFeeds() {
         // Read posts and content data
         const postsData = fs.readFileSync(postsPath, 'utf-8');
         const posts = JSON.parse(postsData);
+
+        const contentData = fs.readFileSync(contentPath, 'utf-8'); // Read content data
+        const allContent = JSON.parse(contentData);
         
         // Sort posts by date, newest first
         posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
         generateSitemap(posts);
-        generateRssFeed(posts);
+        generateRssFeed(posts, allContent); // Pass allContent to generateRssFeed
 
         console.log('✅ Sitemap and RSS feed generated successfully!');
 
@@ -68,7 +72,7 @@ function generateSitemap(posts) {
     console.log(`📝 Sitemap written to ${sitemapPath}`);
 }
 
-function generateRssFeed(posts) {
+function generateRssFeed(posts, allContent) { // Accept allContent
     let rssContent = `<?xml version="1.0" encoding="UTF-8" ?>\n`;
     rssContent += `<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">\n`;
     rssContent += `<channel>\n`;
@@ -84,8 +88,8 @@ function generateRssFeed(posts) {
         rssContent += `    <title>${escapeXml(post.title)}</title>\n`;
         rssContent += `    <link>${siteUrl}${post.link}</link>\n`;
         rssContent += `    <guid isPermaLink="true">${siteUrl}${post.link}</guid>\n`;
-        rssContent += `    <pubDate>${new Date(post.date).toUTCString()}</pubDate>\n`;
-        rssContent += `    <description><![CDATA[${escapeXml(post.excerpt)}]]></description>\n`;
+        rssContent += `    <pubDate>${new Date(post.date).toUTCString()}</pubDate>\n`; // Use post.date for pubDate
+        rssContent += `    <description><![CDATA[${allContent[post.id] ? allContent[post.id] : escapeXml(post.excerpt)}]]></description>\n`; // Use full content, fallback to excerpt
         rssContent += `  </item>\n`;
     });
 

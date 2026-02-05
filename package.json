@@ -4,7 +4,8 @@
   "description": "A static blog site for DevAnvil.",
   "main": "main.js",
   "scripts": {
-    "generate-feeds": "node generate-feeds.js"
+    "generate-feeds": "node generate-feeds.js",
+    "build": "npm run generate-feeds && echo 'Other build steps here (e.g., minification)'"
   },
   "author": "",
   "license": "ISC"

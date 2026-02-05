@@ -249,6 +249,28 @@ body.dark-mode .theme-toggle .fa-moon {
     margin-bottom: 2rem;
 }
 
+/* Search Bar on Blog Page */
+.search-container {
+    margin-bottom: 2.5rem;
+}
+
+#search-input, #home-search-input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    border: 1px solid var(--input-border);
+    border-radius: 5px;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#search-input:focus, #home-search-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
 /* 404 Page Styles */
 .not-found-container {
     display: flex;

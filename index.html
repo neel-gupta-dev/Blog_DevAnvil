@@ -56,9 +56,9 @@
                     <i class="fas fa-moon"></i>
                     <i class="fas fa-sun"></i>
                 </button>
-                <div class="hamburger">
+                <button class="hamburger" aria-label="Open menu" type="button">
                     <i class="fas fa-bars"></i>
-                </div>
+                </button>
             </div>
         </nav>
     </header>
@@ -67,6 +67,12 @@
         <!-- Your blog posts and other main content will go here -->
         <!-- A clear H1 is crucial for SEO on each page -->
         <h1>Latest Articles on Tech & Development</h1>
+
+        <div class="search-container">
+            <form id="home-search-form">
+                <input type="search" id="home-search-input" placeholder="Search all articles...">
+            </form>
+        </div>
 
         <section class="blog-posts">
             <div class="blog-posts-grid" id="latest-posts-grid">

@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const views = viewCounts[post.id] || 0;
                 return `
                     <article class="post-card">
-                        <a href="${post.link}" class="card-image-link"><img src="${post.image}" alt="${post.imageAlt}" class="card-image"></a>
+                        <a href="${post.link}" class="card-image-link"><img src="${post.image}" alt="${post.imageAlt}" class="card-image" loading="lazy"></a>
                         <div class="card-content">
                             <span class="card-category">${post.category}</span>
                             <h2 class="card-title"><a href="${post.link}">${post.title}</a></h2>
@@ -137,6 +137,100 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    // --- Search Functionality for Homepage ---
+    const initHomepageSearch = () => {
+        const searchForm = document.getElementById('home-search-form');
+        const searchInput = document.getElementById('home-search-input');
+
+        if (!searchForm || !searchInput) {
+            return;
+        }
+
+        searchForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const searchTerm = searchInput.value.trim();
+            if (searchTerm) {
+                // Redirect to the blog page with the search query
+                window.location.href = `/blog?q=${encodeURIComponent(searchTerm)}`;
+            }
+        });
+    };
+
+    // --- Search Functionality for Blog Page ---
+    const initBlogSearch = () => {
+        const searchInput = document.getElementById('search-input');
+        const postsGrid = document.querySelector('#all-posts-grid');
+
+        if (!searchInput || !postsGrid) {
+            return;
+        }
+
+        let allPosts = []; // Cache for all posts data
+
+        const renderPosts = (postsToRender) => {
+            const viewCounts = getViewCounts();
+            if (postsToRender.length === 0) {
+                if (searchInput.value.trim() !== '') {
+                    postsGrid.innerHTML = '<p style="text-align: center;">No posts match your search.</p>';
+                } else {
+                    postsGrid.innerHTML = '<p style="text-align: center;">No posts found.</p>';
+                }
+                return;
+            }
+
+            const postsHtml = postsToRender.map(post => {
+                const views = viewCounts[post.id] || 0;
+                return `
+                    <article class="post-card">
+                        <a href="${post.link}" class="card-image-link"><img src="${post.image}" alt="${post.imageAlt}" class="card-image" loading="lazy"></a>
+                        <div class="card-content">
+                            <span class="card-category">${post.category}</span>
+                            <h2 class="card-title"><a href="${post.link}">${post.title}</a></h2>
+                            <p class="card-excerpt">${post.excerpt}</p>
+                            <!-- The meta content is identical to loadPosts and will be rendered correctly -->
+                        </div>
+                    </article>
+                `;
+            }).join('');
+            postsGrid.innerHTML = postsHtml;
+        };
+        
+        const filterAndRender = (searchTerm) => {
+            const lowerCaseTerm = searchTerm.toLowerCase().trim();
+            const filteredPosts = allPosts.filter(post =>
+                post.title.toLowerCase().includes(lowerCaseTerm) ||
+                post.excerpt.toLowerCase().includes(lowerCaseTerm) ||
+                post.category.toLowerCase().includes(lowerCaseTerm)
+            );
+            renderPosts(filteredPosts);
+        };
+
+        const initialize = async () => {
+            try {
+                const response = await fetch('/data/posts.json');
+                if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+                allPosts = await response.json();
+
+                const urlParams = new URLSearchParams(window.location.search);
+                const query = urlParams.get('q');
+                
+                if (query) {
+                    const decodedQuery = decodeURIComponent(query);
+                    searchInput.value = decodedQuery;
+                    filterAndRender(decodedQuery);
+                } else {
+                    renderPosts(allPosts);
+                }
+            } catch (error) {
+                console.error("Failed to load blog posts:", error);
+                postsGrid.innerHTML = '<p style="text-align: center; color: #e74c3c;">Failed to load posts. Please try again later.</p>';
+            }
+        };
+
+        searchInput.addEventListener('input', (e) => filterAndRender(e.target.value));
+
+        initialize();
+    };
     // --- Load Single Post from JSON ---
     const loadSinglePost = async () => {
         const postContent = document.querySelector('#post-content');
@@ -227,9 +321,24 @@ document.addEventListener('DOMContentLoaded', () => {
                     <span><i class="fas fa-calendar-alt"></i> ${post.date}</span>
                     <span class="card-views"><i class="fas fa-eye"></i> ${views}</span>
                 `;
-                document.getElementById('post-image-container').innerHTML = `<img src="${post.image.replace('&w=400&h=250&fit=crop', '&w=1200&h=600&fit=crop')}" alt="${post.imageAlt}">`;
+                document.getElementById('post-image-container').innerHTML = `<img src="${post.image.replace('&w=400&h=250&fit=crop', '&w=1200&h=600&fit=crop')}" alt="${post.imageAlt}" loading="lazy">`;
                 postContent.innerHTML = postHtmlContent || '<p>Content for this post is not available at the moment.</p>';
 
+                // Apply syntax highlighting if highlight.js is loaded
+                if (typeof hljs !== 'undefined') {
+                    // Find all <pre> blocks within the post content
+                    postContent.querySelectorAll('pre').forEach((preBlock) => {
+                        // If there isn't a <code> tag inside, wrap the content with one.
+                        // This makes highlighting more reliable.
+                        if (!preBlock.querySelector('code')) {
+                            preBlock.innerHTML = `<code>${preBlock.innerHTML}</code>`;
+                        }
+                    });
+                    // Now highlight all code blocks within the post content
+                    postContent.querySelectorAll('pre code').forEach((block) => {
+                        hljs.highlightElement(block);
+                    });
+                }
             } else {
                 document.getElementById('post-title').textContent = 'Post Not Found';
                 postContent.innerHTML = '<p>Sorry, we couldn\'t find the post you were looking for. The requested post does not exist.</p>';
@@ -251,6 +360,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Load posts based on which page we are on
     loadPosts('#latest-posts-grid', 3); // For homepage
-    loadPosts('#all-posts-grid');      // For blog page
+    // initBlogSearch now handles loading all posts on the blog page.
+    initBlogSearch();
+    initHomepageSearch();
     loadSinglePost();                  // For single post page
 });

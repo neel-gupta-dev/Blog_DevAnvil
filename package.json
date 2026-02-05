@@ -1,0 +1,11 @@
+{
+  "name": "blog_devanvil",
+  "version": "1.0.0",
+  "description": "A static blog site for DevAnvil.",
+  "main": "main.js",
+  "scripts": {
+    "generate-feeds": "node generate-feeds.js"
+  },
+  "author": "",
+  "license": "ISC"
+}

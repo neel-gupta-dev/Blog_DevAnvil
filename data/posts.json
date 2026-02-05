@@ -35,4 +35,17 @@
     "author": "Admin",
     "date": "2026-02-06"
   }
+  ,
+  {
+    "id": 4,
+    "slug": "proxmox-ultimate-guide-installation-tutorial",
+    "link": "/post?slug=proxmox-ultimate-guide-installation-tutorial",
+    "image": "/assets/images/proxmox-server.png",
+    "imageAlt": "A modern web design layout on a laptop screen",
+    "category": "Home Labbing",
+    "title": "The Definitive Guide to Proxmox VE: Building the Ultimate Home Lab",
+    "excerpt": "Proxmox",
+    "author": "Admin",
+    "date": "2026-02-05"
+  }
 ]

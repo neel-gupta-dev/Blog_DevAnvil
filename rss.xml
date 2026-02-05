@@ -1,26 +1,39 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<rss version="2.0">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
   <title>DevAnvil</title>
   <link>https://devanvil.pages.dev</link>
   <description>Tech &amp; Development Blogs</description>
+  <language>en-us</language>
+  <lastBuildDate>Thu, 05 Feb 2026 07:07:01 GMT</lastBuildDate>
+  <atom:link href="https://devanvil.pages.dev/rss.xml" rel="self" type="application/rss+xml" />
   <item>
-    <title>Mastering Asynchronous JavaScript in 2024</title>
-    <link>https://devanvil.pages.dev/post?slug=mastering-asynchronous-javascript-in-2024</link>
-    <description>Dive deep into Promises, async/await, and the event loop to write non-blocking, efficient code that will impress any developer.</description>
-    <pubDate>Fri, 15 Mar 2024 00:00:00 GMT</pubDate>
+    <title>Network Fundamentals: Why Hubs Belong in a Museum (Not Your 2026 Lab)</title>
+    <link>https://devanvil.pages.dev/post?slug=hubs-vs-switches-networking-basics-2026</link>
+    <guid isPermaLink="true">https://devanvil.pages.dev/post?slug=hubs-vs-switches-networking-basics-2026</guid>
+    <pubDate>Fri, 06 Feb 2026 00:00:00 GMT</pubDate>
+    <description><![CDATA[Explore cutting-edge CSS features like subgrid, container queries, and `has()` to create powerful, responsive layouts with less code.]]></description>
   </item>
   <item>
-    <title>A Beginner's Guide to Docker and Containers</title>
-    <link>https://devanvil.pages.dev/post?slug=a-beginners-guide-to-docker-and-containers</link>
-    <description>Learn how containerization with Docker can streamline your development workflow and simplify deployment across any environment.</description>
-    <pubDate>Tue, 12 Mar 2024 00:00:00 GMT</pubDate>
+    <title>Docker Demystified: The 2026 Handbook for Beginners</title>
+    <link>https://devanvil.pages.dev/post?slug=docker-containers-tutorial-2026</link>
+    <guid isPermaLink="true">https://devanvil.pages.dev/post?slug=docker-containers-tutorial-2026</guid>
+    <pubDate>Thu, 05 Feb 2026 00:00:00 GMT</pubDate>
+    <description><![CDATA[Learn how containerization with Docker can streamline your development workflow and simplify deployment across any environment.]]></description>
   </item>
   <item>
-    <title>Modern CSS Layouts: Beyond Flexbox &amp; Grid</title>
-    <link>https://devanvil.pages.dev/post?slug=modern-css-layouts-beyond-flexbox-and-grid</link>
-    <description>Explore cutting-edge CSS features like subgrid, container queries, and `has()` to create powerful, responsive layouts with less code.</description>
-    <pubDate>Sun, 10 Mar 2024 00:00:00 GMT</pubDate>
+    <title>The Definitive Guide to Proxmox VE: Building the Ultimate Home Lab</title>
+    <link>https://devanvil.pages.dev/post?slug=proxmox-ultimate-guide-installation-tutorial</link>
+    <guid isPermaLink="true">https://devanvil.pages.dev/post?slug=proxmox-ultimate-guide-installation-tutorial</guid>
+    <pubDate>Thu, 05 Feb 2026 00:00:00 GMT</pubDate>
+    <description><![CDATA[Proxmox]]></description>
+  </item>
+  <item>
+    <title>The Sovereign Server: Why Homelabbing is the Most Important Skill of 2026</title>
+    <link>https://devanvil.pages.dev/post?slug=homelabbing-guide-2026</link>
+    <guid isPermaLink="true">https://devanvil.pages.dev/post?slug=homelabbing-guide-2026</guid>
+    <pubDate>Wed, 04 Feb 2026 00:00:00 GMT</pubDate>
+    <description><![CDATA[Dive deep into Promises, async/await, and the event loop to write non-blocking, efficient code that will impress any developer.]]></description>
   </item>
 </channel>
 </rss>

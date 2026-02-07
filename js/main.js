@@ -244,7 +244,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Load Single Post from JSON ---
     const loadSinglePost = async () => {
         const postContent = document.querySelector('#post-content');
-        if (!postContent) return; // Not on a single post page
+        // If we're not on a post page, or if the page is statically generated
+        // (i.e., the content is not empty), then we don't need to fetch anything.
+        if (!postContent || postContent.innerHTML.trim() !== '') {
+            return;
+        }
 
         const urlParams = new URLSearchParams(window.location.search);
         const slug = urlParams.get('slug');

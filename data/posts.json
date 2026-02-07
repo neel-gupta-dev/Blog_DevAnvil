@@ -2,7 +2,7 @@
   {
     "id": 1,
     "slug": "homelabbing-guide-2026",
-    "link": "/posts/homelabbing-guide-2026.html",
+    "link": "/posts/homelabbing-guide-2026",
     "image": "/assets/images/home_lab.jpg",
     "imageAlt": "Close-up of JavaScript code on a dark screen",
     "category": "Home Labbing",
@@ -14,7 +14,7 @@
   {
     "id": 2,
     "slug": "docker-containers-tutorial-2026",
-    "link": "/posts/docker-containers-tutorial-2026.html",
+    "link": "/posts/docker-containers-tutorial-2026",
     "image": "/assets/images/docker.jpg",
     "imageAlt": "Colorful shipping containers stacked at a port, representing Docker",
     "category": "Docker",
@@ -26,7 +26,7 @@
   {
     "id": 3,
     "slug": "hubs-vs-switches-networking-basics-2026",
-    "link": "/posts/hubs-vs-switches-networking-basics-2026.html",
+    "link": "/posts/hubs-vs-switches-networking-basics-2026",
     "image": "/assets/images/switches-hubs.webp",
     "imageAlt": "A modern web design layout on a laptop screen",
     "category": "Home Labbing",
@@ -39,7 +39,7 @@
   {
     "id": 4,
     "slug": "proxmox-ultimate-guide-installation-tutorial",
-    "link": "/posts/proxmox-ultimate-guide-installation-tutorial.html",
+    "link": "/posts/proxmox-ultimate-guide-installation-tutorial",
     "image": "/assets/images/proxmox-server.png",
     "imageAlt": "A modern web design layout on a laptop screen",
     "category": "Home Labbing",

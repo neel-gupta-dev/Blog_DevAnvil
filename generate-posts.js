@@ -53,8 +53,8 @@ function generateStaticPostPages() {
 
             const readTime = calculateReadTime(postContent);
             const siteUrl = 'https://devanvil.pages.dev';
-            const postUrl = `/posts/${post.slug}.html`; // The new URL structure
-            const absolutePostUrl = siteUrl + postUrl;
+            const logicalPostUrl = `/posts/${post.slug}`; // The desired clean URL structure
+            const absolutePostUrl = siteUrl + logicalPostUrl;
             const largeImageUrl = post.image.replace('&w=400&h=250&fit=crop', '&w=1200&h=600&fit=crop');
 
             // 4. Replace all placeholders in the template with actual post data

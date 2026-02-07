@@ -282,7 +282,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 setMetaTag('description', post.excerpt, false); // name="description"
 
                 // Dynamic Canonical URL
-                const absolutePostUrl = window.location.origin + post.link;
+                const absolutePostUrl = window.location.origin + `/posts/${post.slug}`; // Construct clean URL
                 setLinkTag('canonical', absolutePostUrl);
 
                 // Open Graph / Facebook

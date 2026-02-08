@@ -48,4 +48,17 @@
     "author": "Admin",
     "date": "2026-02-05"
   }
+  ,
+  {
+    "id": 5,
+    "slug": "how-routers-work-beginners-guide-2026",
+    "link": "/posts/how-routers-work-beginners-guide-2026",
+    "image": "/assets/images/router.jpeg",
+    "imageAlt": "A modern web design layout on a laptop screen",
+    "category": "Home Labbing",
+    "title": "The Digital Traffic Controller: How Your Router Actually Works (A 2026 Guide)",
+    "excerpt": "Router",
+    "author": "Admin",
+    "date": "2026-02-08"
+  }
 ]

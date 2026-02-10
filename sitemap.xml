@@ -3,27 +3,33 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://devanvil.pages.dev/</loc>
-    <lastmod>2026-02-08</lastmod>
+    <lastmod>2026-02-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://devanvil.pages.dev/blog</loc>
-    <lastmod>2026-02-08</lastmod>
+    <lastmod>2026-02-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://devanvil.pages.dev/about</loc>
-    <lastmod>2026-02-08</lastmod>
+    <lastmod>2026-02-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://devanvil.pages.dev/contact</loc>
-    <lastmod>2026-02-08</lastmod>
+    <lastmod>2026-02-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://devanvil.pages.dev/posts/firewall-router-guide-2026</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://devanvil.pages.dev/posts/how-routers-work-beginners-guide-2026</loc>

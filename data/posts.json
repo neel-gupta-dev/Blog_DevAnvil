@@ -61,4 +61,18 @@
     "author": "Admin",
     "date": "2026-02-08"
   }
+  ,
+  {
+    "id": 6,
+    "slug": "firewall-router-guide-2026",
+    "link": "/posts/firewall-router-guide-2026",
+    "image": "/assets/images/firewall.jpg",
+    "imageAlt": "The Digital Fortress: Why Your 2026 Home Needs a Firewall Router",
+    "category": "Home Labbing",
+    "title": "The Digital Fortress: Why Your 2026 Home Needs a Firewall Router",
+    "excerpt": "Router",
+    "author": "Admin",
+    "date": "2026-02-10"
+  }
+
 ]
